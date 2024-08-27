@@ -15,19 +15,19 @@ paths:
     get:
 
       parameters:
-        -in: querry
-        name: Page
-        schema:
-          type: integer
-        required : true
-        description : Parametre obligatoire
+        - in: query
+          name: Page
+          schema:
+            type: integer
+          required : true
+          description : Parametre obligatoire
 
-        -in : query
-        name : PageSize
-        schema :
-          type : 
-        required : true
-        description : Parametre obligatoire  
+        - in: query
+          name : PageSize
+          schema :
+            type : integer
+          required : true
+          description : Parametre obligatoire  
 
       responses:
         '200':
@@ -35,6 +35,24 @@ paths:
           content:
             application/json:
               schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+  
+    post:
+      requestBody: 
+        description: Attend la liste des clients
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref : "#/components/schemas/Customer"
+      responses : 
+        '200':
+          description : Succès
+          content:
+            application/json:
+              schema: 
                 type: array
                 items:
                   $ref: "#/components/schemas/Customer"
