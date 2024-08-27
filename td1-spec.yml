@@ -13,6 +13,22 @@ paths:
 
   /customers:
     get:
+
+      parameters:
+        -in: querry
+        name: Page
+        schema:
+          type: integer
+        required : true
+        description : Parametre obligatoire
+
+        -in : query
+        name : PageSize
+        schema :
+          type : 
+        required : true
+        description : Parametre obligatoire  
+
       responses:
         '200':
           description: Succès
