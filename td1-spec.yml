@@ -49,3 +49,5 @@ components:
           type: string
         age:
           type: integer
+        id:
+          type: string
