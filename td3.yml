@@ -1,0 +1,119 @@
+openapi: 3.0.0
+
+info:
+
+  title: STD23054 - TD1
+  version: 1.0.0
+
+servers:
+
+  - url: https://localhost.STD23054.com
+
+paths:
+
+  /Meals:
+    get:
+
+      parameters:
+        - in: query
+          name: Page
+          schema:
+            type: integer
+          required : true
+          description : Parametre obligatoire
+
+        - in: query
+          name : PageSize
+          schema :
+            type : integer
+          required : true
+          description : Parametre obligatoire  
+
+      responses:
+        '200':
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Meal"
+  
+    post:
+      requestBody: 
+        description: Attend la liste des clients
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref : "#/components/schemas/Meal"
+      responses : 
+        '200':
+          description : Succès
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: "#/components/schemas/Meal"
+
+    put:
+      description: update a meal
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          required : true
+          description : Parametre obligatoire
+
+        - in: query
+          name : price
+          schema :
+            type : number
+          required : true
+          description : Parametre obligatoire  
+      
+      responses:
+        '200':
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Meal"
+    
+    delete:
+      description: supprimer des meals
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+          required: true
+          description : saisir l'id du meal à supprimer
+          
+      responses:
+        '200':
+          description: Suprimé!
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Meal"
+                  
+                  
+components:
+
+  schemas:
+    Meal:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        id:
+          type: string
